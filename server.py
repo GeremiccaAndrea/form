@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.route('/') # L'utente richiede l'home page
+@app.route('/') 
 def benvenuto():
   return render_template("form.html")
 
-@app.route('/controlla') # L'utente richiede l'home page
+@app.route('/controlla') 
 def controlla():
   return "pagina di controllo"
 
-@app.route('/login') # L'utente richiede l'home page
+@app.route('/login' , methods = ['GET']) 
 def login():
   nome = request.args.get('nome')
   cognome = request.args.get('cognome')
