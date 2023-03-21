@@ -33,13 +33,13 @@ def indiceMassaCorporea():
     altezzaUtente = int(request.args.get('altezza'))
     IMC = pesoUtente / ((altezzaUtente / 100) ** 2)
     if IMC < 20:
-        return ('Sei sottopeso!')
+        img = "/static/images/pizza.jpg"
+        return (risultato = 'Sei sottopeso!', foto = img)
     elif IMC > 20 and IMC < 30:
         return ('Sei normopeso!')
-    else: 
-        if IMC > 30:
-            return ('Sei sovrappeso!')
-  return render_template("IMC.html")
+    elif IMC > 30:
+        return ('Sei sovrappeso!')
+        return render_template("InserisciPesoeAltezza.html")
 
   
 if __name__ == '__main__':
