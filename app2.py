@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/') 
 def benvenuto():
-  return render_template("formPost.html")
+  return render_template("InserisciPesoeAltezza.html")
 
 @app.route('/controlla') 
 def controlla():
@@ -27,20 +27,20 @@ def login():
         return render_template('formPost.html', sesso = sesso)
 
 
-@app.route('/') 
+@app.route('/IMC') 
 def indiceMassaCorporea():
-    pesoUtente = int(request.args.get('peso'))
-    altezzaUtente = int(request.args.get('altezza'))
+    pesoUtente = float(request.args.get('peso'))
+    altezzaUtente = float(request.args.get('altezza'))
     IMC = pesoUtente / ((altezzaUtente / 100) ** 2)
     if IMC < 20:
         img = "/static/images/pizza.jpg"
-        return (risultato = 'Sei sottopeso!', foto = img)
+        return render_template("IMC.html" , risultato = 'Sei sottopeso!', foto = img)
     elif IMC > 20 and IMC < 30:
-        return ('Sei normopeso!')
-    elif IMC > 30:
-        return ('Sei sovrappeso!')
-        return render_template("InserisciPesoeAltezza.html")
+        img = "/static/images/pasta.jpg"
+        return render_template("IMC.html" , risultato = 'Sei normopeso!', foto = img)
+    else: 
+        img = "/static/images/verdura.jpg"
+        return render_template("IMC.html" , risultato = 'Sei sovrappeso!', foto = img)
 
-  
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
